@@ -1,0 +1,862 @@
+/* Responsive breakpoints (desktop-first). Device labels below. */
+/* 1728px — MacBook Pro 16" */
+@media (max-width: 1728px) {
+    .vac-hero-title-all {
+        font-size: 215px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 150px;
+    }
+}
+
+/* 1512px — MacBook Pro 14" */
+@media (max-width: 1512px) {
+    .vac-hero-title-all {
+        font-size: 215px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 120px;
+    }
+}
+
+/* 1280px — MacBook Air / small desktop */
+@media (max-width: 1280px) {
+    footer {
+        padding: 40px 0;
+        margin-top: 40px;
+    }
+
+    .footer-content-right-link {
+        font-size: 15px;
+    }
+
+    .footer-text-text {
+        font-size: 12px;
+    }
+
+    .doc_text {
+        margin-top: 150px;
+        margin-bottom: 100px;
+    }
+
+    .vac-hero-title-all {
+        font-size: 215px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 120px;
+    }
+
+    .vac-hero-img-left {
+        max-width: 33vw;
+    }
+
+    .main-hero-img-cat {
+        left: 8%;
+        bottom: 3%;
+        max-width: 267px;
+    }
+
+    .main-hero-decor-fig {
+        width: 160px;
+
+        top: 40%;
+    }
+
+    .main-hero-img-pc {
+        right: 6%;
+        top: 18%;
+        max-width: 355px;
+    }
+
+    .main-hero-title-ideas {
+        font-size: 175px;
+    }
+
+    .main-hero-title-into {
+        font-size: 144px;
+    }
+}
+
+/* 1024px — iPad Pro / large tablets */
+@media (max-width: 1024px) {
+    .doc_text {
+        margin-top: 130px;
+        margin-bottom: 80px;
+    }
+
+    .doc_text h3 {
+        font-size: 62px;
+    }
+
+    .doc_text h4,
+    .doc_text h4.osn-color {
+        font-size: 44px;
+    }
+
+    .doc_text h5 {
+        font-size: 26px;
+    }
+
+    .doc_text .osn-text {
+        font-size: 19px;
+    }
+
+    .doc_text .doc-definitions-list,
+    .doc_text .doc-definitions-list li {
+        font-size: 19px;
+    }
+
+    .cat_head {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .main-hero-title {
+
+        left: 8%;
+        top: 38%;
+    }
+
+    .main-hero-decor-fig {
+        width: 160px;
+        top: 16%;
+    }
+    .main-hero-title-turning,
+    .main-hero-title-ideas,
+    .main-hero-title-into {
+        margin-left: 0px;
+    }
+}
+
+/* 820px — iPad Air */
+@media (max-width: 820px) {
+    .vac-info-content {
+        text-align: center;
+    }
+
+    /* index: contact section — image first on mobile */
+    .contact_us .row.align-center {
+        flex-direction: column;
+    }
+
+    .contact_us .row.align-center .col-lg-4 {
+        order: -1;
+    }
+
+    .contact_us .row.align-center .col-lg-8 {
+        order: 0;
+    }
+
+    .header .container-fluid {
+        display: none;
+    }
+
+    .mobile-header {
+        display: block;
+    }
+
+    .header-nav2 {
+        display: none;
+    }
+
+    .mobile-header-nav2 {
+        display: block;
+    }
+
+    .header {
+        height: auto;
+        min-height: 80px;
+    }
+
+    footer {
+        padding: 30px 0;
+        margin-top: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin: 0 auto !important;
+    }
+
+    .footer-content-left {
+        justify-content: center;
+    }
+
+    .footer-content-left-logo-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .footer-content-right {
+        align-items: center;
+        gap: 15px;
+    }
+
+    .footer-content-right-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer-text-text {
+        text-align: center;
+        font-size: 11px;
+    }
+
+    .doc_text {
+        margin-top: 120px;
+        margin-bottom: 70px;
+    }
+
+    .doc_text .container {
+        padding-left: var(--gutter);
+        padding-right: var(--gutter);
+    }
+
+    .doc_text h3 {
+        font-size: 52px;
+        margin-bottom: 18px;
+    }
+
+    .doc_text h4,
+    .doc_text h4.osn-color {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .doc_text h5 {
+        font-size: 24px;
+    }
+
+    .doc_text .osn-text {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+
+    .doc_text .doc-definitions-list,
+    .doc_text .doc-definitions-list li {
+        font-size: 18px;
+        padding-left: 1.5em;
+    }
+
+    .doc_text .doc-contact-email {
+        word-break: normal;
+    }
+
+    .vac-hero-title {
+        transform: translateX(0%);
+    }
+
+    .vac-hero-title-all {
+        font-size: 215px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 120px;
+    }
+
+    .vac-hero-img-left {
+        left: 0%;
+        max-height: 65vh;
+        max-width: 56vw;
+    }
+
+    .vac-hero-img-right {
+        max-height: 32vh;
+        max-width: 56vw;
+        top: 12%;
+        right: 4%;
+    }
+
+    .vac-hero-decor-grid {
+        left: 50%;
+        width: min(55vw, 300px);
+        bottom: 18%;
+    }
+
+    .vac-hero-decor-fig {
+        width: min(28vw, 140px);
+        right: 6%;
+        bottom: 8%;
+    }
+
+    .vac-info {
+        padding-top: 150px;
+    }
+
+    .application-form {
+        padding: 20px;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .file-upload-area {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .drag-drop-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .advantages {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .advantages-subtitle {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .advantages-card {
+        padding: 32px 24px;
+        min-height: 280px;
+    }
+
+    h2 {
+        font-size: 85px;
+    }
+
+    .run_row {
+        background-size: cover;
+    }
+
+    .main-hero-title {
+        top: 30%;
+    }
+
+    .main-hero-title-turning,
+    .main-hero-title-ideas,
+    .main-hero-title-into {
+        margin-left: 0px;
+    }
+
+    .main-hero-decor-fig {
+        top: 15%;
+    }
+
+    .main-hero-img-pc {
+        top: 10%;
+    }
+
+    .main-hero-title-turning {
+        font-size: 135px;
+    }
+
+    .main-hero-title-into {
+        font-size: 126px;
+    }
+
+}
+
+/* 440px — Large iPhones */
+@media (max-width: 440px) {
+
+    h2 {
+        font-size: 44px;
+        margin-bottom: 10px;
+    }
+
+    .header {
+        min-height: 72px;
+    }
+
+    .mobile-header-bar,
+    .mobile-header-nav2-bar {
+        height: 72px;
+        padding: 12px 18px;
+    }
+
+    footer {
+        padding: 28px 0;
+        margin-top: 28px;
+    }
+
+    .footer-content-left-logo-img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .footer-content-right-link {
+        font-size: 14px;
+    }
+
+    .footer-text-text {
+        font-size: 11px;
+    }
+
+    .doc_text {
+        margin-top: 125px;
+        margin-bottom: 55px;
+    }
+
+    .doc_text .container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .doc_text h3 {
+        font-size: 36px;
+    }
+
+    .doc_text h4,
+    .doc_text h4.osn-color {
+        font-size: 24px;
+    }
+
+    .doc_text h5 {
+        font-size: 20px;
+    }
+
+    .doc_text .osn-text {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .doc_text .doc-definitions-list,
+    .doc_text .doc-definitions-list li {
+        font-size: 15px;
+        padding-left: 1.25em;
+    }
+
+    .vac-hero-title-all {
+        font-size: 155px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 50px;
+    }
+
+    .vac-hero-img-left {
+        max-width: 55vw;
+    }
+
+    .vac-info h4 {
+        font-size: 45px;
+    }
+
+    .vac-info h5 {
+        font-size: 25px;
+    }
+
+    .vac-info .osn-text {
+        font-size: 18px;
+    }
+
+    .submit-btn {
+        font-size: 20px;
+    }
+
+    .imag-vaс img,
+    .imag-vak-img {
+        width: 80%;
+    }
+
+    
+    .main-hero-img-cat {
+        left: 8%;
+        bottom: 17%;
+        max-width: 178px;
+    }
+
+    .main-hero-decor-grid {
+
+        right: 0%;
+        bottom: 20%;
+        width: 350px;
+    }
+
+    .main-hero-img-pc {
+        right: 14%;
+        top: 12%;
+        max-width: 235px;
+    }
+
+    .main-hero-decor-fig {
+        width: 100px;
+        top: 17%;
+    }
+
+    .main-hero-title {
+        left: 8%;
+        top: 35%;
+    }
+
+    .main-hero-title-turning {
+        font-size: 55px;
+    }
+
+    .main-hero-title-ideas {
+        font-size: 86px;
+        margin-left: 20px;
+    }
+
+    .main-hero-title-into {
+        font-size: 50px;
+        margin-left: 20px;
+    }
+
+    .about-title {
+        text-align: center;
+        font-size: 70px;
+    }
+
+    .about-text {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .main-text {
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .our_apps,
+    .contact_us h2 {
+        text-align: center;
+    }
+
+    .run_row {
+        background-size: cover;
+    }
+
+    .run_row-item {
+        font-size: 50px;
+    }
+
+    .run_apps-img {
+        height: 100px;
+    }
+
+    .cat_head-img {
+        width: 260px;
+        height: 260px;
+    }
+
+    .main_btn {
+        width: 100%;
+    }
+
+    .paper-style {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .contact_us-img {
+        margin-bottom: 30px;
+    }
+
+    .contact-modal-title {
+        font-size: 40px;
+    }
+
+}
+
+/* 375px — Standard iPhones */
+@media (max-width: 375px) {
+    .header {
+        min-height: 70px;
+    }
+
+    .mobile-header-bar,
+    .mobile-header-nav2-bar {
+        height: 70px;
+        padding: 12px 15px;
+    }
+
+    .mobile-header-logo-img,
+    .mobile-header-nav2-logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .mobile-header-nav2-back-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .close-icon {
+        font-size: 28px;
+    }
+
+    .mobile-menu-links {
+        padding: 25px 15px;
+        gap: 20px;
+    }
+
+    .mobile-nav-link {
+        font-size: 20px;
+    }
+
+    footer {
+        padding: 25px 0;
+        margin-top: 25px;
+    }
+
+    .footer-content {
+        gap: 20px;
+    }
+
+    .footer-content-left-logo-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .footer-content-right-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-content-right-link {
+        font-size: 13px;
+    }
+
+    .footer-text-text {
+        font-size: 10px;
+    }
+
+    .doc_text {
+
+        margin-bottom: 50px;
+    }
+
+    .doc_text .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .doc_text h3 {
+        font-size: 32px;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    .doc_text h4,
+    .doc_text h4.osn-color {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .doc_text h5 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .doc_text .osn-text {
+        font-size: 14px;
+        margin-bottom: 14px;
+        line-height: 1.5;
+    }
+
+    .doc_text .doc-definitions-list,
+    .doc_text .doc-definitions-list li {
+        font-size: 14px;
+        padding-left: 1.2em;
+        margin-bottom: 0.4em;
+    }
+
+    .doc_text .doc-definitions-list ul {
+        padding-left: 1em;
+    }
+
+    .doc_text .doc-contact-email {
+        word-break: break-all;
+    }
+
+    .vac-hero-title-all {
+        font-size: 155px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 50px;
+    }
+
+    .imag-vaс img,
+    .imag-vak-img {
+        width: 60%;
+    }
+
+    
+    .main-hero-img-cat {
+        left: 8%;
+        bottom: 3%;
+        max-width: 178px;
+    }
+
+    .main-hero-decor-grid {
+
+        right: 0%;
+        bottom: 15%;
+        width: 350px;
+    }
+
+    .main-hero-img-pc {
+        right: -1%;
+        top: 14%;
+        max-width: 235px;
+    }
+
+    .main-hero-decor-fig {
+        width: 100px;
+        top: 17%;
+    }
+
+    .main-hero-title {
+        left: 8%;
+        top: 40%;
+    }
+
+    .main-hero-title-turning {
+        font-size: 55px;
+    }
+
+    .main-hero-title-ideas {
+        font-size: 86px;
+        margin-left: 20px;
+    }
+
+    .main-hero-title-into {
+        font-size: 50px;
+        margin-left: 20px;
+    }
+
+}
+
+/* 320px — iPhone SE / small phones */
+@media (max-width: 320px) {
+    h2 {
+        font-size: 40px;
+    }
+
+    .header {
+        min-height: 60px;
+    }
+
+    .mobile-header-bar,
+    .mobile-header-nav2-bar {
+        height: 60px;
+        padding: 10px 12px;
+    }
+
+    .mobile-header-logo-img,
+    .mobile-header-nav2-logo-img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .mobile-header-nav2-back-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .close-icon {
+        font-size: 24px;
+    }
+
+    .mobile-menu-links {
+        padding: 20px 12px;
+        gap: 16px;
+    }
+
+    .mobile-nav-link {
+        font-size: 18px;
+    }
+
+    footer {
+        padding: 20px 0;
+        margin-top: 20px;
+    }
+
+    .footer-content {
+        gap: 16px;
+    }
+
+    .footer-content-left-logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer-content-right-link {
+        font-size: 12px;
+    }
+
+    .footer-text-text {
+        font-size: 9px;
+    }
+
+    .doc_text {
+
+        margin-bottom: 40px;
+    }
+
+    .doc_text .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .doc_text h3 {
+        font-size: 26px;
+        margin-bottom: 12px;
+    }
+
+    .doc_text h4,
+    .doc_text h4.osn-color {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .doc_text h5 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    .doc_text .osn-text {
+        font-size: 13px;
+        margin-bottom: 12px;
+    }
+
+    .doc_text .doc-definitions-list,
+    .doc_text .doc-definitions-list li {
+        font-size: 13px;
+        padding-left: 1em;
+    }
+
+    .vac-hero-title-all {
+        font-size: 130px;
+    }
+
+    .vac-hero-title-vacancies {
+        font-size: 40px;
+    }
+
+    .vac-hero-img-left {
+        max-width: 38vw !important;
+    }
+
+    .main-hero-img-cat {
+
+        max-width: 113px;
+    }
+
+    .main-hero-img-pc {
+        right: 1%;
+        top: 16%;
+        max-width: 185px;
+    }
+
+    .main-hero-title-ideas {
+        margin-left: 0px;
+    }
+
+    .main-hero-title-into {
+        margin-left: 0px;
+    }
+
+}
