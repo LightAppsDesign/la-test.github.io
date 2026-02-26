@@ -38,32 +38,91 @@ window.addEventListener('resize', function() {
 });
 
 // ============================================
-// Run apps: проверка видимости обеих строк, при сбое — заглушка
+// Run apps: замер ширины для точного цикла (как run_row) + заглушка на каждую строку
 // ============================================
+function initRunAppsMeasure() {
+    var t1 = document.querySelector('.run_app1-track');
+    var t2 = document.querySelector('.run_app2-track');
+    if (t1 && t1.scrollWidth > 0) {
+        t1.style.setProperty('--run-app1-half-px', String(Math.round(t1.scrollWidth / 2)));
+        t1.classList.add('run_apps-track--measured');
+    }
+    if (t2 && t2.scrollWidth > 0) {
+        t2.style.setProperty('--run-app2-half-px', String(Math.round(t2.scrollWidth / 2)));
+        t2.classList.add('run_apps-track--measured');
+    }
+}
+
 function checkRunAppsVisible() {
     var block = document.getElementById('runApps');
-    if (!block || block.classList.contains('run_apps--fallback')) return;
+    if (!block) return;
+    var row1 = document.getElementById('runAppsRow1');
+    var row2 = document.getElementById('runAppsRow2');
     var track1 = block.querySelector('.run_app1-track');
     var track2 = block.querySelector('.run_app2-track');
     var minHeight = 20;
     var ok1 = track1 && (track1.offsetHeight >= minHeight || (track1.getBoundingClientRect && track1.getBoundingClientRect().height >= minHeight));
     var ok2 = track2 && (track2.offsetHeight >= minHeight || (track2.getBoundingClientRect && track2.getBoundingClientRect().height >= minHeight));
-    if (!ok1 || !ok2) {
-        block.classList.add('run_apps--fallback');
-    }
+    if (row1) row1.classList.toggle('run_apps-row--fallback', !ok1);
+    if (row2) row2.classList.toggle('run_apps-row--fallback', !ok2);
 }
+
 function initRunAppsCheck() {
     checkRunAppsVisible();
     setTimeout(checkRunAppsVisible, 100);
     setTimeout(checkRunAppsVisible, 500);
 }
+
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initRunAppsCheck);
+    document.addEventListener('DOMContentLoaded', function() {
+        initRunAppsCheck();
+        document.fonts.ready.then(function() {
+            initRunAppsMeasure();
+            initRunAppsCheck();
+        });
+    });
 } else {
     initRunAppsCheck();
+    document.fonts.ready.then(function() {
+        initRunAppsMeasure();
+        initRunAppsCheck();
+    });
 }
 window.addEventListener('load', function() {
+    setTimeout(initRunAppsMeasure, 0);
     setTimeout(checkRunAppsVisible, 50);
+    setTimeout(checkRunAppsVisible, 300);
+});
+var runAppsResizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(runAppsResizeTimer);
+    runAppsResizeTimer = setTimeout(function() {
+        initRunAppsMeasure();
+        checkRunAppsVisible();
+    }, 150);
+});
+
+// Safari: перезапуск анимаций при восстановлении страницы (bfcache) и при возврате на вкладку
+function restartScrollAnimations() {
+    var animated = document.querySelectorAll(
+        '.run_row-track, .run_app1-track, .run_app2-track, ' +
+        '.main-hero-img-cat, .main-hero-decor-grid, .main-hero-title-turning, .main-hero-title-ideas, .main-hero-title-into, ' +
+        '.vac-hero-decor-grid, .vac-hero-title-all, .vac-hero-title-vacancies, ' +
+        '.big_cat-grid, .portrait-stub__icon'
+    );
+    function reflow(el) {
+        if (!el) return;
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = '';
+    }
+    animated.forEach(reflow);
+}
+window.addEventListener('pageshow', function(e) {
+    if (e.persisted) setTimeout(restartScrollAnimations, 0);
+});
+document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') setTimeout(restartScrollAnimations, 0);
 });
 
 // ============================================

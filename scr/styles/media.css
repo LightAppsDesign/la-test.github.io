@@ -538,12 +538,16 @@
         min-height: 220px;
     }
 
-    .run_apps.run_apps--fallback .run_apps-fallback {
-        min-height: 220px;
+    .run_apps-row {
+        min-height: 100px;
     }
 
-    .run_apps-fallback-line {
+    .run_apps-row-fallback {
         min-height: 100px;
+    }
+
+    .run_apps-fallback-img {
+        max-height: 100px;
     }
 
     .run_apps-track {
