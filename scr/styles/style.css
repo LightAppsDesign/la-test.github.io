@@ -1129,7 +1129,7 @@ footer .container {
 .vac-item-main2,
 .vac-item-main3 {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    transition: transform 0.15s ease-out;
+    transition: transform 0.28s ease-out;
 }
 
 .vac-item-main1 .vac-item-pin:not(.random-pin),
@@ -1535,6 +1535,12 @@ footer .container {
     padding: 1rem 0;
     animation: run_row-scroll 40s linear infinite;
     width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.run_row-track.run_row-track--measured {
+    animation-name: run_row-scroll_exact;
 }
 
 .run_row-item {
@@ -1557,10 +1563,19 @@ footer .container {
 
 @keyframes run_row-scroll {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes run_row-scroll_exact {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(calc(var(--run-row-half-px) * -1px), 0, 0);
     }
 }
 
@@ -1571,6 +1586,42 @@ footer .container {
     gap: 1rem;
     overflow: hidden;
     padding: 1.5rem 0;
+    min-height: 200px;
+}
+
+.run_apps-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: hidden;
+}
+
+.run_apps.run_apps--fallback .run_apps-tracks {
+    display: none;
+}
+
+.run_apps.run_apps--fallback .run_apps-fallback {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: 200px;
+}
+
+.run_apps-fallback {
+    display: none;
+    padding: 1.5rem 0;
+}
+
+.run_apps-fallback-line {
+    min-height: 180px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: run_apps-fallback-shine 8s ease-in-out infinite;
+}
+
+@keyframes run_apps-fallback-shine {
+    0%, 100% { background-position: 150% 0; }
+    50% { background-position: -50% 0; }
 }
 
 .run_apps-track {
@@ -1578,6 +1629,9 @@ footer .container {
     align-items: center;
     width: max-content;
     gap: 0;
+    min-height: 180px;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .run_apps-img {
@@ -1585,6 +1639,7 @@ footer .container {
     height: 180px;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 .run_app1-track {
@@ -1597,19 +1652,19 @@ footer .container {
 
 @keyframes run_app-scroll-ltr {
     0% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
     100% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
 @keyframes run_app-scroll-rtl {
     0% {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 }
 

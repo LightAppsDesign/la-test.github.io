@@ -1,4 +1,72 @@
 // ============================================
+// Run row: ширина ровно первых 5 элементов + 4 gap (шов строго между 5 и 6)
+// ============================================
+function initRunRowExactScroll() {
+    const track = document.querySelector('.run_row-track');
+    if (!track) return;
+    const children = track.children;
+    if (children.length < 10) {
+        var fallback = Math.round(track.scrollWidth / 2);
+        track.style.setProperty('--run-row-half-px', String(fallback));
+        track.classList.add('run_row-track--measured');
+        return;
+    }
+    var gapPx = 0;
+    try {
+        var g = getComputedStyle(track).gap;
+        if (g && g.endsWith('px')) gapPx = parseFloat(g) || 0;
+        else if (g && g.endsWith('rem')) gapPx = parseFloat(g) * parseFloat(getComputedStyle(document.documentElement).fontSize) || 0;
+    } catch (_) {}
+    var sum = 0;
+    for (var i = 0; i < 5; i++) sum += children[i].offsetWidth;
+    sum += 4 * gapPx;
+    var scrollPx = Math.round(sum);
+    track.style.setProperty('--run-row-half-px', String(scrollPx));
+    track.classList.add('run_row-track--measured');
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        document.fonts.ready.then(initRunRowExactScroll);
+    });
+} else {
+    document.fonts.ready.then(initRunRowExactScroll);
+}
+let runRowResizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(runRowResizeTimer);
+    runRowResizeTimer = setTimeout(initRunRowExactScroll, 150);
+});
+
+// ============================================
+// Run apps: проверка видимости обеих строк, при сбое — заглушка
+// ============================================
+function checkRunAppsVisible() {
+    var block = document.getElementById('runApps');
+    if (!block || block.classList.contains('run_apps--fallback')) return;
+    var track1 = block.querySelector('.run_app1-track');
+    var track2 = block.querySelector('.run_app2-track');
+    var minHeight = 20;
+    var ok1 = track1 && (track1.offsetHeight >= minHeight || (track1.getBoundingClientRect && track1.getBoundingClientRect().height >= minHeight));
+    var ok2 = track2 && (track2.offsetHeight >= minHeight || (track2.getBoundingClientRect && track2.getBoundingClientRect().height >= minHeight));
+    if (!ok1 || !ok2) {
+        block.classList.add('run_apps--fallback');
+    }
+}
+function initRunAppsCheck() {
+    checkRunAppsVisible();
+    setTimeout(checkRunAppsVisible, 100);
+    setTimeout(checkRunAppsVisible, 500);
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initRunAppsCheck);
+} else {
+    initRunAppsCheck();
+}
+window.addEventListener('load', function() {
+    setTimeout(checkRunAppsVisible, 50);
+});
+
+// ============================================
 // Мобильное меню
 // ============================================
 const mobileHeader = document.querySelector('.mobile-header');
@@ -338,8 +406,8 @@ if (fileUploadArea && fileInput && uploadBtn && fileName && removeFileBtn) {
     var bigCatSection = document.querySelector('.big_cat');
     var bigCatImg = bigCatSection ? bigCatSection.querySelector('.big_cat-img') : null;
 
-    // Разные «фазы» для псевдо-рандомного зеркала от скролла (каждая картинка переворачивается в своей позиции)
-    var catHeadScrollSteps = [97, 113, 79];
+    // Шаг скролла для зеркала: чем больше — тем реже переворот (срабатывает через раз)
+    var catHeadScrollSteps = [320, 380, 280];
     var vacSeeds = [1337, 4242, 9001];
 
     function getScrollY() {
@@ -370,36 +438,33 @@ if (fileUploadArea && fileInput && uploadBtn && fileName && removeFileBtn) {
         var scrollY = getScrollY();
         var vh = window.innerHeight;
 
-        // Cat Head: параллакс + зеркальное отображение от скролла (рандомно по позиции)
+        // Cat Head: только зеркальное отображение от скролла (параллакс убран)
         if (catHead && catHeadImgs.length) {
-            var rect = catHead.getBoundingClientRect();
-            var centerY = rect.top + rect.height / 2;
-            var viewportCenter = vh / 2;
-            var scrollFactor = (centerY - viewportCenter) * 0.2;
-            var parallaxSpeeds = [0.4, 0.8, 0.4];
             catHeadImgs.forEach(function(img, i) {
-                var offset = scrollFactor * (parallaxSpeeds[i] || 0.5);
                 var step = catHeadScrollSteps[i] || 100;
                 var mirror = (Math.floor(scrollY / step) + i) % 2 === 1;
                 var scaleX = mirror ? -1 : 1;
-                img.style.transform = 'translateY(' + offset + 'px) scaleX(' + scaleX + ')';
+                img.style.transform = 'scaleX(' + scaleX + ')';
             });
         }
 
-        // Карточки вакансий: активное шатание от скролла (будто качаются при прокрутке)
+        // Карточки вакансий: плавное покачивание от скролла (сглаженное через lerp)
         if (mainVacRow && vacCards.length) {
             var vacRect = mainVacRow.getBoundingClientRect();
             var vacCenter = vacRect.top + vacRect.height / 2;
             var progress = 1 - Math.max(0, Math.min(1, (vacCenter - vh * 0.3) / (vh * 0.6)));
-            // Основное покачивание (в зоне видимости) + хаотичное шатание (у каждой карточки своё)
-            var sway = Math.sin(progress * Math.PI) * 4.5;
+            var sway = Math.sin(progress * Math.PI) * 3;
             var baseRotations = [2.5, 0, -2.5];
             vacCards.forEach(function(card, i) {
                 var seed = vacSeeds[i] || (1000 + i * 77);
-                var n1 = noise1(scrollY * 0.02, seed);      // 0..1 (медленнее)
-                var n2 = noise1(scrollY * 0.055, seed + 19); // 0..1 (быстрее)
-                var chaos = ((n1 - 0.5) * 8) + ((n2 - 0.5) * 4); // примерно -6..6 deg
-                var deg = baseRotations[i] + sway + chaos;
+                var n1 = noise1(scrollY * 0.012, seed);
+                var n2 = noise1(scrollY * 0.028, seed + 19);
+                var chaos = ((n1 - 0.5) * 3) + ((n2 - 0.5) * 2);
+                var targetDeg = baseRotations[i] + sway + chaos;
+                var current = parseFloat(card.getAttribute('data-vac-rot')) || baseRotations[i];
+                var smooth = 0.08;
+                var deg = current + (targetDeg - current) * smooth;
+                card.setAttribute('data-vac-rot', String(deg));
                 card.style.transform = 'rotate(' + deg + 'deg)';
             });
         }
